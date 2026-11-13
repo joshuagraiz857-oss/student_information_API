@@ -22,7 +22,21 @@ A RESTful backend API built with Node.js, Express, TypeScript, and Supabase Post
    pnpm dev
    ```
 
-   ## API Endpoints
+## Render Deployment
+
+The Supabase CA certificate is included at `certs/supabase-ca.crt`. In Render's
+environment settings, set `DATABASE_URL` to your Supabase connection string and
+use the repository-relative certificate path in its query parameters:
+
+```text
+sslmode=verify-full&sslrootcert=certs%2Fsupabase-ca.crt
+```
+
+Do not use a local Windows path for `sslrootcert`; it is unavailable in Render's
+Linux environment. Keep the existing `pnpm build` build command and
+`pnpm run start` start command.
+
+## API Endpoints
  
 | Method | Endpoint | Description | Success Status |
 | --- | --- | --- | --- |
